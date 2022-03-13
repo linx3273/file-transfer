@@ -9,6 +9,4 @@
 - for sending files, place the files in the "shared" folder
 - all files that are downloaded will be stored in the "downloaded" folder
 - if these folders do not exist, the program will automatically create them on the first run
-
-
-
+- coded on python 3.8.10
