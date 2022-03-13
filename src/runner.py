@@ -1,30 +1,32 @@
 import src.server as server
 import src.client as client
-import src.message as message
+import src.funcs as funcs
+import os
 
 def runner():
-    flag = True
-    while(flag):
+    try:
+        os.mkdir("shared")
+        os.mkdir( "downloaded")
+    except: # incase the folders already exist
+        pass    
+
+    while True:
         print()
-        message.msg()
+        funcs.msg()
         print("1. Host")
-        message.msg()
+        funcs.msg()
         print("2. Connect to a host")
-        message.msg()
+        funcs.msg()
         print("3. Exit")
-        try:
-            message.inpmsg()
-            c = int(input("Enter Choice: "))
-            if(c==1):       # Acting as server
-                server.server()
-            elif(c==2):     # Acting as Client
-                client.client()
-            elif(c==3):
-                message.msg()
-                print("Exiting Program...")
-                flag = False    # to terminate the program by invalidating the pass case for the loop
-            else:
-                raise ValueError()
-        except:
-            message.errmsg()
-            print("Invalid Choice. Try Again")
+
+        funcs.inpmsg()
+        c = int(input("Enter Choice: "))
+        print()
+        if c==1:       # Acting as server
+            server.server()
+        elif c==2:     # Acting as Client
+            client.client()
+        elif c==3:
+            funcs.msg()
+            print("Program Closed")
+            break;  # stopping program by breaking the loop
