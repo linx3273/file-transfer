@@ -81,6 +81,7 @@ def getFile(conn):
             data = conn.recv(SIZE)
 
             if not data:
+                os.system("start .\\downloaded\\")
                 break
 
             f.write(data)
@@ -106,4 +107,3 @@ def handleConnection(conn):
             getFile(conn)
         elif c==3:  # closing the connection
             return
-

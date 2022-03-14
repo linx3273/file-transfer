@@ -31,3 +31,5 @@ def client():
             continue
         elif c==2:
             return
+        else:
+            break
