@@ -1,16 +1,24 @@
 import socket
 import src.funcs as funcs
 
+def getIPFromSocket():
+    sv  = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    sv.connect(('8.8.8.8', 80))
+    IP,__port = sv.getsockname()
+    sv.close()
+    return IP
+
 def server():
-    IP = socket.gethostbyname(socket.gethostname()) # gets the ipv4 address automatically and prevent hardcoding the ip address
+    # IP = socket.gethostbyname(socket.gethostname()) # gets the ipv4 address automatically and prevent hardcoding the ip address
     # socket.gethostname() => returns the computer name
+    IP = getIPFromSocket()
     PORT = 5050
     ADDR = (IP,PORT)
     sv  = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     sv.bind(ADDR)
     sv.listen()
     funcs.msg()
-    print(f"Server is listenting on: {IP}")
+    print(f"Server is listening on: {IP}")
 
     while True:
         conn,addr = sv.accept()
